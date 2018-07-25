@@ -1,0 +1,17 @@
+Package: wsbackfit
+Title: Weighted Smooth Backfitting for Structured Models
+Version: 1.0
+Authors@R: c(person("Javier Roca-Pardinas", 
+           email = "roca@uvigo.es", role = c("aut", "cre")),
+           person("Stefan Sperlich",
+              email = "stefan.sperlich@unige.dot.ch", role = "aut"),
+           person("Maria Xose Rodriguez-Alvarez",
+              email = "mxrodriguez@bcamath.org", role = "aut"))
+Maintainer: José Carlos Soage González <jsoage@uvigo.es>
+Description: Nonparametric statistical methods for estimating generalized additive and partially linear models as well as generalized varying coefficient models.
+Depends: R (>= 3.5.0)
+Imports: stats, graphics
+License: GPL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
