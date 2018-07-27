@@ -10,7 +10,7 @@
 #' @param newdata TODO
 #' @export
 sback <- function(formula, data, weights = NULL, kbin = 15, family = 2, newdata = NULL) {
-	if(missing(formula)) {
+		if(missing(formula)) {
 		stop("Argument \"formula\" is missing, with no default")
 	}
 	if(missing(formula)) {
@@ -23,30 +23,28 @@ sback <- function(formula, data, weights = NULL, kbin = 15, family = 2, newdata 
 	if(is.null(fsb$response)) {
 		stop("Response variable should be specified in argument \"formula\"")
 	}
-	varnames <- fsb$II[2, ]
-	if(anyNA(match(c(fsb$response, varnames), names(data)))) {
+	varnames <- fsb$II[2,]
+	if(any(is.na(match(c(fsb$response, varnames), names(data))))) {
 		stop("Not all needed variables are supplied in data")
 	}
 	if(!is.null(newdata)) {
-		if(anyNA(match(varnames, names(data)))) {
+		if(any(is.na(match(varnames, names(data))))) {
 			stop("Not all needed variables are supplied in newdata")
 		}
 	} else {
-		newdata <- data
+		newdata = data
 	}
-	data <- stats::na.omit(data[, c(fsb$response, varnames)])
-	newdata <- stats::na.omit(newdata[, varnames, drop = FALSE])
+	data <- na.omit(data[, c(fsb$response, varnames)])
+	newdata <- na.omit(newdata[, varnames, drop = FALSE])
 
 	n <- nrow(data)
 	n0 <- nrow(newdata)
-	# ifelse(is.null(weights), weights <- rep(1, n), if(sum(weights) <=0 || any(weights < 0) || length(weights) != n)	stop("The specified weights are not correct"))
 	if(is.null(weights)) {
 		weights <- rep(1, n)
 	} else {
 		if(sum(weights) <=0 || any(weights < 0) || length(weights) != n)
 			stop("The specified weights are not correct")
 	}
-
  	sback.fit  <- .Fortran("sbackMain",
                x      = matrix(as.double(as.matrix(data[, varnames])), ncol = length(varnames)),
                y      = as.double(data[, fsb$response]),
