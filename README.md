@@ -4,7 +4,7 @@
 
 ## Install the development version from GitHub
 ```r
-devtools::install_github('sidoruvigo/Equalden.HD')
+devtools::install_github('sidoruvigo/wsbackfit')
 ```
 
 Documentation for package ‘wsbackfit-package’ version 1.0
